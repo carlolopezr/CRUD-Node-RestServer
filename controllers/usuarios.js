@@ -90,8 +90,11 @@ const usuariosDelete = async (req, res = response) => {
 
     // Cambiar el estado a inactivo
     const usuario = await Usuario.findByIdAndUpdate(id, { estado: false })
+    // const usuarioAutenticado = req.usuario;
 
-    res.json(usuario);
+    res.json({
+        usuario,
+    });
 }
 
 
