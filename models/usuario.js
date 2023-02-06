@@ -39,7 +39,9 @@ const usuarioSchema = Schema({
 
 // Sobreescribiendo el metodo para quitar la version y el password al retornar el usuario
 usuarioSchema.methods.toJSON = function () {
-    const { __v, password, ...usuario } = this.toObject()
+    const { __v, password, _id, ...usuario } = this.toObject();
+
+    usuario.uid = _id
     return usuario;
 }
 

@@ -4,8 +4,6 @@ const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuario');
 
 
-
-
 const usuariosGet = async (req = request, res = response) => {
 
     const { limit = 5, desde = 0 } = req.query
@@ -67,7 +65,6 @@ const usuariosPut = async (req, res = response) => {
     }
 
     // Encuentra al usuario, lo actualiza y lo retorna
-
     const usuario = await Usuario.findByIdAndUpdate(id, resto)
 
     res.json({
@@ -90,8 +87,11 @@ const usuariosDelete = async (req, res = response) => {
 
     // Cambiar el estado a inactivo
     const usuario = await Usuario.findByIdAndUpdate(id, { estado: false })
+    // const usuarioAutenticado = req.usuario;
 
-    res.json(usuario);
+    res.json({
+        usuario,
+    });
 }
 
 
